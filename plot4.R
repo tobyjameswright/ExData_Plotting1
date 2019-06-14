@@ -45,5 +45,5 @@ with(data, plot(x = DateTime, y = Global_reactive_power, xlab = "datetime", type
 
 
 #copy to png
-dev.copy(device=png, "plot4.png")
+dev.copy(device=png, "plot4.png", height=480, width = 480)
 dev.off()

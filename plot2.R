@@ -20,5 +20,5 @@ data$DateTime <- with(data, ymd(Date) + hms(Time))
 with(data, plot(x = DateTime, y = Global_active_power, xlab = "", ylab = "Global Active Power (kilowatts)", type = "l"))
 
 #copy to png
-dev.copy(device=png, "plot2.png")
+dev.copy(device=png, "plot2.png", height=480, width=480)
 dev.off()
