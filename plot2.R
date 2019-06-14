@@ -1,4 +1,5 @@
 library(dplyr)
+library(lubridate)
 
 #read in data
 mydata <- read.csv(file= "household_power_consumption.txt", header=T, sep = ";", stringsAsFactors = F)
@@ -12,9 +13,12 @@ mydata$Global_active_power <- as.numeric(mydata$Global_active_power)
 #subset data to two days
 data <- subset(mydata, mydata$Date == "2007-02-01" | mydata$Date == "2007-02-02")
 
-#plot histogram
-with(data, hist(Global_active_power, col="red", xlab = "Global Active Power (kilowatts)", main="Global Active Power"))
+# create a date time column
+data$DateTime <- with(data, ymd(Date) + hms(Time))
+
+#plot chart
+with(data, plot(x = DateTime, y = Global_active_power, xlab = "", ylab = "Global Active Power (kilowatts)", type = "l"))
 
 #copy to png
-dev.copy(device=png)
+dev.copy(device=png, "plot2.png")
 dev.off()
